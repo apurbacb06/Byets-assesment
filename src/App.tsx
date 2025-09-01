@@ -70,117 +70,59 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold text-gray-800 mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            TaskFlow
-          </h1>
-          <p className="text-gray-600 text-lg">Manage your tasks efficiently</p>
-        </div>
-
-        {/* Add Task Form */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-          <div className="flex gap-4">
-            <input
-              type="text"
-              value={newTask}
-              onChange={(e) => setNewTask(e.target.value)}
-              placeholder="Enter a new task..."
-              className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
-              onKeyPress={(e) => e.key === 'Enter' && addTask()}
-            />
-            <button
-              onClick={addTask}
-              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg"
-            >
-              Add Task
-            </button>
-          </div>
-        </div>
-
-        {/* Tasks Table */}
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-800">Your Tasks</h2>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Task
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {tasks.length === 0 ? (
-                  <tr>
-                    <td colSpan={3} className="px-6 py-12 text-center text-gray-500">
-                      <div className="text-4xl mb-4">📝</div>
-                      <p className="text-lg">No tasks yet. Add your first task above!</p>
-                    </td>
-                  </tr>
-                ) : (
-                  tasks.map((task) => (
-                    <tr key={task._id} className="hover:bg-gray-50 transition-colors duration-150">
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <div className={`w-3 h-3 rounded-full mr-3 ${task.completed ? 'bg-green-400' : 'bg-gray-300'}`}></div>
-                          <span className={`text-sm font-medium ${task.completed ? 'text-gray-500 line-through' : 'text-gray-900'}`}>
-                            {task.title}
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                          task.completed
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-yellow-100 text-yellow-800'
-                        }`}>
-                          {task.completed ? 'Completed' : 'Pending'}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <div className="flex space-x-2">
-                          <button
-                            onClick={() => toggleComplete(task._id)}
-                            className={`px-3 py-1 rounded-md text-xs font-medium transition-colors duration-150 ${
-                              task.completed
-                                ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200'
-                                : 'bg-green-100 text-green-800 hover:bg-green-200'
-                            }`}
-                          >
-                            {task.completed ? 'Mark Pending' : 'Mark Complete'}
-                          </button>
-                          <button
-                            onClick={() => deleteTask(task._id)}
-                            className="px-3 py-1 bg-red-100 text-red-800 rounded-md text-xs font-medium hover:bg-red-200 transition-colors duration-150"
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="text-center mt-8 text-gray-500 text-sm">
-          <p>Built with React, Vite, Tailwind CSS & MongoDB</p>
-        </div>
+    <div style={{ maxWidth: 500, margin: "40px auto", padding: 20 }}>
+      <h1 style={{ fontSize: 28, fontWeight: "bold", marginBottom: 16 }}>TaskFlow</h1>
+      <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
+      <input
+        type="text"
+        value={newTask}
+        onChange={(e) => setNewTask(e.target.value)}
+        placeholder="Enter a new task..."
+        style={{ flex: 1, padding: 8, border: "1px solid #ccc", borderRadius: 4 }}
+        onKeyPress={(e) => e.key === 'Enter' && addTask()}
+      />
+      <button onClick={addTask} style={{ padding: "8px 16px" }}>Add</button>
       </div>
+      <ul style={{ listStyle: "none", padding: 0 }}>
+      {tasks.length === 0 ? (
+        <li style={{ textAlign: "center", color: "#888", padding: 32 }}>
+        No tasks yet.
+        </li>
+      ) : (
+        tasks.map((task) => (
+        <li key={task._id} style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "8px 0",
+          borderBottom: "1px solid #eee"
+        }}>
+          <span
+          style={{
+            textDecoration: task.completed ? "line-through" : "none",
+            color: task.completed ? "#888" : "#222"
+          }}
+          >
+          {task.title}
+          </span>
+          <div style={{ display: "flex", gap: 8 }}>
+          <button
+            onClick={() => toggleComplete(task._id)}
+            style={{ fontSize: 12 }}
+          >
+            {task.completed ? "Mark Pending" : "Mark Complete"}
+          </button>
+          <button
+            onClick={() => deleteTask(task._id)}
+            style={{ fontSize: 12, color: "red" }}
+          >
+            Delete
+          </button>
+          </div>
+        </li>
+        ))
+      )}
+      </ul>
     </div>
   )
 }

@@ -3,101 +3,91 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: "Courier New", Courier, monospace;
+  line-height: 1.2;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #000;
+  background-color: #fff;
 
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  text-rendering: auto;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
   -webkit-text-size-adjust: 100%;
 }
 
 * {
   box-sizing: border-box;
-  
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  display: block;
   min-width: 320px;
   min-height: 100vh;
+  background: #fff;
+  color: #000;
 }
 
 .app {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  max-width: none;
+  margin: 0;
+  padding: 0.5rem;
+  text-align: left;
 }
 
 .task-input {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  display: block;
+  gap: 0;
+  margin-bottom: 1rem;
 }
 
 input {
-  flex: 1;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  display: block;
+  width: 100%;
+  padding: 0.2rem;
+  border: 1px solid #888;
+  border-radius: 0;
+  background: #eee;
+  color: #222;
+  margin-bottom: 0.5rem;
 }
 
 button {
-  padding: 0.5rem 1rem;
-  background-color: #9197fc;
-  color: white;
-  border: none;
-  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  background-color: #ccc;
+  color: #222;
+  border: 1px solid #888;
+  border-radius: 0;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #4c55ff;
+  background-color: #bbb;
 }
 
 .task-list {
-  list-style: none;
-  padding: 0;
+  list-style: decimal;
+  padding-left: 1.5rem;
 }
 
 .task-list li {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 0.5rem;
-  background-color: #1a1a1a;
+  padding: 0.2rem;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 0.2rem;
+  background-color: #eee;
+  color: #222;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #31506b;
-    background-color: #a2d4f5;
+    color: #000;
+    background-color: #fff;
   }
   .task-list li {
-    background-color: #f9f9f9;
-  }
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #90c5f3;
-    background-color: #fdeeee;
+    background-color: #eee;
   }
 }
